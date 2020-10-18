@@ -2,7 +2,7 @@
 Code repo for algorithms used in ESP3201 Machine Learning in Robotics module
 
 ## Installation steps
-1. 
+1.
 
 ## Possible image segmentation networks (try to find one with a 'road' label already included)
 i. Mask R-CNN <br/>
@@ -10,6 +10,9 @@ ii. SegNet<br/>
 
 
 ## Datasets needed
+- Cityscapes dataset: https://www.cityscapes-dataset.com/dataset-overview/ <br/>
+This looks the most comprehensive, has road labels, and contains 5k (!!) images (fully labeled) + 20k images (partially labeled) <br/>
+
 - kitti semantic segmentation labels:<br />
 i. http://www.cvlibs.net/datasets/kitti/eval_semseg.php?benchmark=semantics2015<br />
 ii. http://www.cvlibs.net/datasets/kitti/eval_instance_seg.php?benchmark=instanceSeg2015<br />
