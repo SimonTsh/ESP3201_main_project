@@ -43,6 +43,12 @@ https://www.analyticsvidhya.com/blog/2019/04/introduction-image-segmentation-tec
 - Training segnet:<br/>
 http://mi.eng.cam.ac.uk/projects/segnet/tutorial.html<br/>
 
+- Training R-CNN and Tensorflow:<br/>
+https://medium.com/analytics-vidhya/indian-driving-dataset-instance-segmentation-with-mask-r-cnn-and-tensorflow-b03617156d44
+
+- Training Fast-SCNN:<br/>
+https://medium.com/deep-learning-journals/fast-scnn-explained-and-implemented-using-tensorflow-2-0-6bd17c17a49e
+
 - Semantic segmentation tutorial:<br/>
 https://pixellib.readthedocs.io/en/latest/image_ade20k.html<br/>
 
