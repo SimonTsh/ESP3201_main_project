@@ -2,7 +2,7 @@
 Code repo for algorithms used in ESP3201 Machine Learning in Robotics module
 
 ## Installation steps
-1.
+1. Follow instructions from https://github.com/navganti/SegNet to install SegNet (and corresponding libraries like Caffe)
 
 ## Possible image segmentation networks (try to find one with a 'road' label already included)
 i. Mask R-CNN <br/>
