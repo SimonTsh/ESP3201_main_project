@@ -27,7 +27,7 @@ cameraR.enable(timestep)
 camera_width = int(cameraL.getWidth())
 camera_height = int(cameraL.getHeight())
 display = driver.getDisplay('display')
-focal_length = cameraL.getWidth() / 2.0 / np.tan(cameraL.getFov() / 2.0)      # https://stackoverflow.com/questions/61555182/webot-camera-default-parameters-like-pixel-size-and-focus
+focal_length = 0.5*cameraL.getWidth() / np.tan(cameraL.getFov() / 2.0)      # https://stackoverflow.com/questions/61555182/webot-camera-default-parameters-like-pixel-size-and-focus
 
 orb = cv2.ORB_create(nfeatures=1000, scoreType=cv2.ORB_FAST_SCORE)
 min_disparity = 1
@@ -47,7 +47,7 @@ def kbStereoUpdateListener(matcher):
         if (key == ord('S')):
             num_disparity16 = max(1, num_disparity16-1)
         if (key == ord('E')):
-            blocksize_2 = min(255, blocksize_2+1)
+            blocksize_2 = min(127, blocksize_2+1)
         if (key == ord('D')):
             blocksize_2 = max(2, blocksize_2-1)
         # stereo.setMinDisparities(min_disparity)
@@ -59,6 +59,8 @@ def kbStereoUpdateListener(matcher):
         return matcher
 
 def projectPoints(image, disparity, f, b):
+    """ Simplified point projection algorithm for parallel stereo setup. """
+    b = 0.8         # hardcoded for now
     height = image.shape[0]
     width = image.shape[1]
     zs = b * f * np.reciprocal(np.ma.masked_less_equal(disparity, 0).astype(np.float32))
@@ -66,6 +68,9 @@ def projectPoints(image, disparity, f, b):
     # X = Z*(u - u0) / f
     xs = np.multiply(zs, (np.linspace(0.0,width-1,width) - 0.5*width) / f)
     ys = np.multiply(zs, (np.linspace(0.0,height-1,height) - 0.5*height) / f)
+
+    xx, yy = np.meshgrid(xs, ys)
+
 
 # OpenCV functions
 def getImageFromCamera(cam):
@@ -134,17 +139,16 @@ def computeDisparityMap(imgL_color, imgR_color):
 while driver.step() != -1:
     # listen for kb input
     stereo = kbStereoUpdateListener(stereo)
-
     # Read the sensors:
     # imgL = np.asarray(cameraL.getImageArray(),dtype=np.uint8)
     # imgR = np.asarray(cameraR.getImageArray(),dtype=np.uint8)
     imgL = getImageFromCamera(cameraL)
     imgR = getImageFromCamera(cameraR)
 
-    # cameraL.saveImage("left.jpg",100)
-    # cameraR.saveImage("right.jpg",100)
+    cameraL.saveImage("left.jpg",100)
+    cameraR.saveImage("right.jpg",100)
     # print(imgR.shape)
-    print("focal length : ",cameraL.getFocalDistance())
+    print("Focal length: ",focal_length)
     # Process sensor data here.
 
     # display processed image in window
@@ -159,7 +163,7 @@ while driver.step() != -1:
     # img_ref = display.imageNew(proc_img.tolist(), Display.RGB, 480, 240);
     img_ref = display.imageNew(proc_img_trans.tolist(), Display.RGB, 480, 240);
     display.imagePaste(img_ref, 0, 0);
-    # display.imageSave(img_ref,"disp.jpg")
+    display.imageSave(img_ref,"disp.jpg")
 
     # Enter here functions to send actuator commands, like:
     #  motor.setPosition(10.0)

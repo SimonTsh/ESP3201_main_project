@@ -74,8 +74,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.001976891127839201 0.9928408182558469 0.11942864608848747 3.220037132951188
-  position -47.42054098344057 6.367978860548517 29.934417006218403
+  orientation 0.04583088615872075 0.976952691403105 0.20847774133977978 3.5908717329081856
+  position -56.81934843499814 10.922753239294526 28.560698121062913
   near 1
   follow "vehicle"
   followType "Mounted Shot"
@@ -558,7 +558,7 @@ CurvedRoadSegment {
 }
 BmwX5 {
   translation -45.88 0.4 45
-  controller "stereo_AV_controller"
+  controller "scnn_test_controller"
   sensorsSlotFront [
     SickLms291 {
       translation 0 -2.4286129e-17 -0.06
@@ -588,13 +588,8 @@ BmwX5 {
       ]
       name "cameraL"
       fieldOfView 1
-      width 480
-      height 240
-      lens Lens {
-      }
-      focus Focus {
-        focalLength 0.1
-      }
+      width 2048
+      height 1024
     }
     Camera {
       translation 0.4 -0.05 -0.72
@@ -621,11 +616,6 @@ BmwX5 {
       fieldOfView 1
       width 480
       height 240
-      lens Lens {
-      }
-      focus Focus {
-        focalLength 0.1
-      }
     }
   ]
   sensorsSlotCenter [
@@ -634,8 +624,8 @@ BmwX5 {
     Gyro {
     }
     Display {
-      width 480
-      height 480
+      width 512
+      height 256
     }
   ]
 }
