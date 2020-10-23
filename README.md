@@ -62,3 +62,6 @@ https://medium.com/analytics-vidhya/training-your-own-data-set-using-mask-r-cnn-
 https://www.analyticsvidhya.com/blog/2019/07/computer-vision-implementing-mask-r-cnn-image-segmentation/<br/>
 https://github.com/matterport/Mask_RCNN (links to tutorial on next link)<br/>
 https://engineering.matterport.com/splash-of-color-instance-segmentation-with-mask-r-cnn-and-tensorflow-7c761e238b46<br/>
+
+- Adapting image segmentation to simulated environment:<br/>
+https://junyanz.github.io/CycleGAN/<br/>
