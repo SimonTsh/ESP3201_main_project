@@ -248,6 +248,7 @@ def get_fast_scnn(dataset='citys', pretrained=False, root='./weights', map_cpu=F
             model.load_state_dict(torch.load(os.path.join(root, 'fast_scnn_%s.pth' % acronyms[dataset]), map_location='cpu'))
         else:
             model.load_state_dict(torch.load(os.path.join(root, 'fast_scnn_%s.pth' % acronyms[dataset])))
+            # model.load_state_dict(torch.load(os.path.join(root, 'tsh_fast_scnn_citys_4iterations.pth')))
     return model
 
 

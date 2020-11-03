@@ -1,0 +1,6 @@
+#VRML_OBJ R2020b utf8
+Background {
+  skyColor [
+    0.15 0.45 1
+  ]
+}

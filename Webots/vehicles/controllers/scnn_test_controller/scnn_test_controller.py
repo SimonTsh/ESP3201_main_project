@@ -46,12 +46,13 @@ transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
 
 print("Model setup done!")
 
+
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while driver.step() != -1:
     # Read the sensors:
     imgL = np.asarray(cameraL.getImageArray(),dtype=np.uint8)
-    imgR = np.asarray(cameraR.getImageArray(),dtype=np.uint8)
+    # imgR = np.asarray(cameraR.getImageArray(),dtype=np.uint8)
 
     # cameraL.saveImage("left.jpg",100)
     # cameraR.saveImage("right.jpg",100)
@@ -60,20 +61,17 @@ while driver.step() != -1:
     # Process sensor data here.
 
     # run fast SCNN and display processed image in window
-    image = Image.fromarray(imgL)
+    scl = 2048 // imgL.shape[0]
+    # image = Image.open('./png/frankfurt_000001_058914_leftImg8bit.png')
+    image = Image.fromarray(imgL).resize((1024, 2048))
     image = transform(image).unsqueeze(0).to(device)
     model.eval()
     with torch.no_grad():
         outputs = model(image)
     pred = torch.argmax(outputs[0], 1).squeeze(0).cpu().data.numpy()
-    proc_img_trans = get_color_pallete(pred, 'citys')[0:pred.shape[0]:4, 0:pred.shape[1]:4]
+    proc_img_trans = get_color_pallete(pred, 'citys')[0:pred.shape[0]:scl, 0:pred.shape[1]:scl]
 
-
-    # proc_img_trans = cv2.rotate(cv2.flip(proc_img,1), cv2.ROTATE_90_COUNTERCLOCKWISE)
-    # print("Disparity (proc): ",np.min(proc_img), np.median(proc_img), np.max(proc_img))
-
-    # img_ref = display.imageNew(proc_img.tolist(), Display.RGB, 480, 240);
-    img_ref = display.imageNew(proc_img_trans.tolist(), Display.RGB, 480, 240);
+    img_ref = display.imageNew(proc_img_trans.tolist(), Display.RGB, 512, 256);
     display.imagePaste(img_ref, 0, 0);
     # display.imageSave(img_ref,"disp.jpg")
 

@@ -30,13 +30,15 @@ def get_color_pallete(npimg, dataset='citys'):
         out_img.putpalette(adepallete)
         return out_img
     elif dataset == 'citys':
-        # out_img = Image.fromarray(npimg.astype('uint8'))
-        # out_img.putpalette(cityspallete)
-        # return out_img
         tmp = npimg.astype(np.uint8)
         out_img = LUT(np.dstack((tmp,tmp,tmp)), lut)
-        # out_img.putpalette(cityspallete)
         return out_img
+
+        # out_img = Image.fromarray(npimg.astype('uint8'))
+        # out_img.putpalette(cityspallete)
+        # out_img = np.array(out_img.convert('RGB'))
+        # return out_img
+
     out_img = Image.fromarray(npimg.astype('uint8'))
     out_img.putpalette(vocpallete)
     return out_img
@@ -107,7 +109,7 @@ cityspallete = [
 
 cityspallete_r = np.array([128, 244, 70, 102, 190, 153, 250, 220, 107, 152, 0, 220, 255, 0, 0, 0, 0, 0, 119])
 cityspallete_g = np.array([64, 35, 70, 102, 153, 153, 170, 220, 142, 251, 130, 20, 0, 0, 0, 60, 80, 0, 11])
-cityspallete_b = np.array([128,232,70,156,153,153,30,0,35,152,180,60,0,142,70,100,100,230,32])
+cityspallete_b = np.array([128, 232, 70, 156, 153, 153, 30, 0, 35, 152, 180, 60, 0, 142, 70, 100, 100, 230, 32])
 
 lut = np.zeros((256)).astype(np.uint8)
 lut = np.dstack((lut, lut, lut))

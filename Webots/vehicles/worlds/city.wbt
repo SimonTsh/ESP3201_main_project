@@ -74,14 +74,15 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.04583088615872075 0.976952691403105 0.20847774133977978 3.5908717329081856
-  position -56.81934843499814 10.922753239294526 28.560698121062913
+  orientation 0.00290136765620813 -0.9996935263600821 -0.02458526834238397 3.1562837631473566
+  position -48.16728868672465 2.614099746480371 32.270622565481204
   near 1
   follow "vehicle"
   followType "Mounted Shot"
   followSmoothness 0
 }
 TexturedBackground {
+  texture "noon_sunny_empty"
 }
 TexturedBackgroundLight {
 }
@@ -558,7 +559,7 @@ CurvedRoadSegment {
 }
 BmwX5 {
   translation -45.88 0.4 45
-  controller "scnn_test_controller"
+  controller "manual_replay_controller"
   sensorsSlotFront [
     SickLms291 {
       translation 0 -2.4286129e-17 -0.06
@@ -614,8 +615,8 @@ BmwX5 {
       ]
       name "cameraR"
       fieldOfView 1
-      width 480
-      height 240
+      width 512
+      height 256
     }
   ]
   sensorsSlotCenter [
