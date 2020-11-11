@@ -52,7 +52,7 @@ while driver.step() != -1:
         imgL = getImageFromCamera(cameraL)
         out.write(imgL)
 
-    if (kb.getKey() == ord('Q')):
+    if (kb.getKey() == ord('Q') or idx > 36300):
         print("Stopping video...")
         out.release()
         break
